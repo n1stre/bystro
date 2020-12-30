@@ -11,8 +11,8 @@
     "url": "git+https://github.com/streletss/bystencil.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Nikita Streletss",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/streletss/bystencil/issues"
   },
