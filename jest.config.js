@@ -17,7 +17,7 @@ module.exports = {
   testMatch: ["**/*.(test|spec).(js|ts|tsx)"],
   testPathIgnorePatterns: ["/node_modules/"],
 
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ["src/**/*.ts*"],
   coverageDirectory: "__tests__/coverage",
   coveragePathIgnorePatterns: ["/node_modules/"],
