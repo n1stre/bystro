@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "outDir": "dist",
+    "typeRoots": ["./**/__types__", "./node_modules/@types"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"],
+      "@fixtures/*": ["__tests__/fixtures/*"],
+      "@mocks/*": ["__tests__/mocks/*"],
+      "@entities/*": ["src/1_entities/*"],
+      "@usecases/*": ["src/2_usecases/*"],
+      "@shared/*": ["src/shared/*"]
+    }
+  },
+  "include": ["src", "__types__/index.d.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
