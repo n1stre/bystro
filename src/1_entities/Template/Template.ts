@@ -10,7 +10,9 @@ export default (params: TemplateBuildParams) => {
     const dto = { ...props };
 
     return Object.freeze({
-      getPath: () => dto.path,
+      getPath: () => {
+        return dto.path;
+      },
 
       setPath(path) {
         dto.path = path;
@@ -18,19 +20,18 @@ export default (params: TemplateBuildParams) => {
       },
 
       setVariables(vars) {
-        dto.contents = Object.entries(dto.contents).reduce((acc, entry) => {
+        dto.contents = Object.entries(initialContents).reduce((acc, entry) => {
           let file = entry[0];
           let contents = entry[1];
 
           Object.keys(vars).forEach((rawVariable) => {
-            const variable = params.varPrefix + rawVariable + params.varPostfix;
+            const variable = params.varPrefix + rawVariable + params.varSuffix;
             const value = vars[rawVariable];
             file = file.replace(new RegExp(variable, "g"), value);
             contents = contents.replace(new RegExp(variable, "g"), value);
           });
 
           acc[file] = contents;
-
           return acc;
         }, {} as Record<string, string>);
 

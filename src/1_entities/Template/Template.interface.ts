@@ -1,6 +1,6 @@
 export interface TemplateBuildParams {
   varPrefix: string;
-  varPostfix: string;
+  varSuffix: string;
 }
 
 export interface TemplateDTO {

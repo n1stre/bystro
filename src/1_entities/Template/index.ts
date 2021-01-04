@@ -2,7 +2,7 @@ import buildTemplate from "./Template";
 
 const makeTemplate = buildTemplate({
   varPrefix: "__",
-  varPostfix: "__",
+  varSuffix: "__",
 });
 
 const Template = Object.freeze({
