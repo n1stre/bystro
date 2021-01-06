@@ -19,7 +19,6 @@ describe("CloneTemplateToPath usecase", () => {
   it("should create template files within the specified path", async () => {
     const filesystem = {
       joinPaths: path.join,
-      folderExists: jest.fn().mockReturnValue(false),
       createFiles: jest.fn((data: Record<string, string>) => undefined),
     };
 
