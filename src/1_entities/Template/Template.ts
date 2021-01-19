@@ -6,12 +6,15 @@ import {
 
 export default (params: TemplateBuildParams) => {
   return function makeTemplate(props: TemplateDTO): TemplateInstance {
-    const initialContents = props.contents;
     const dto = { ...props };
 
     return Object.freeze({
       getPath: () => {
         return dto.path;
+      },
+
+      getFiles: () => {
+        return dto.files
       },
 
       setPath(path) {
@@ -20,20 +23,16 @@ export default (params: TemplateBuildParams) => {
       },
 
       setVariables(vars) {
-        dto.contents = Object.entries(initialContents).reduce((acc, entry) => {
-          let file = entry[0];
-          let contents = entry[1];
-
+        dto.files = dto.files.map(({ path, contents }) => {
           Object.keys(vars).forEach((rawVariable) => {
             const variable = params.varPrefix + rawVariable + params.varSuffix;
             const value = vars[rawVariable];
-            file = file.replace(new RegExp(variable, "g"), value);
+            path = path.replace(new RegExp(variable, "g"), value);
             contents = contents.replace(new RegExp(variable, "g"), value);
           });
 
-          acc[file] = contents;
-          return acc;
-        }, {} as Record<string, string>);
+          return { path, contents };
+        });
 
         return this;
       },

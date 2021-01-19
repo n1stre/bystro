@@ -1,13 +1,23 @@
-import path from "path";
 import CloneTemplateToPath from "./index";
 
 const templatesRepository = {
   templates: {
     rc: {
-      "__NAME__/index.ts": "console.log('hello')",
-      "__NAME__/__NAME__.ts":
-        "export default function __NAME__() { console.log('Hello from __NAME__'); }",
-      "__NAME__/data/some.txt": "some static data",
+      files: [
+        {
+          path: "__NAME__/index.ts",
+          contents: "console.log('hello')",
+        },
+        {
+          path: "__NAME__/__NAME__.ts",
+          contents:
+            "export default function __NAME__() { console.log('Hello from __NAME__'); }",
+        },
+        {
+          path: "__NAME__/data/some.txt",
+          contents: "some static data",
+        },
+      ],
     },
   },
   getTemplateByName(name: string) {
@@ -18,8 +28,7 @@ const templatesRepository = {
 describe("CloneTemplateToPath usecase", () => {
   it("should create template files within the specified path", async () => {
     const filesystem = {
-      joinPaths: path.join,
-      createFiles: jest.fn((data: Record<string, string>) => undefined),
+      createFiles: jest.fn((p: string, f: []) => undefined),
     };
 
     const dependencies = {
@@ -33,11 +42,20 @@ describe("CloneTemplateToPath usecase", () => {
       variables: { NAME: "MyComponent" },
     });
 
-    expect(filesystem.createFiles).toBeCalledWith({
-      "some/fake/path/MyComponent/index.ts": "console.log('hello')",
-      "some/fake/path/MyComponent/MyComponent.ts":
-        "export default function MyComponent() { console.log('Hello from MyComponent'); }",
-      "some/fake/path/MyComponent/data/some.txt": "some static data",
-    });
+    expect(filesystem.createFiles).toBeCalledWith("./some/fake/path", [
+      {
+        path: "MyComponent/index.ts",
+        contents: "console.log('hello')",
+      },
+      {
+        path: "MyComponent/MyComponent.ts",
+        contents:
+          "export default function MyComponent() { console.log('Hello from MyComponent'); }",
+      },
+      {
+        path: "MyComponent/data/some.txt",
+        contents: "some static data",
+      },
+    ]);
   });
 });

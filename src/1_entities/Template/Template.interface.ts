@@ -3,13 +3,19 @@ export interface TemplateBuildParams {
   varSuffix: string;
 }
 
-export interface TemplateDTO {
+export interface FileDTO {
   path: string;
-  contents: Record<string, string>;
+  contents: string;
+}
+
+export interface TemplateDTO {
+  path?: string;
+  files: FileDTO[];
 }
 
 export interface TemplateInstance {
   getPath: () => string;
+  getFiles: () => FileDTO[];
   setPath: (p: string) => TemplateInstance;
   setVariables: (v: Record<string, string>) => TemplateInstance;
   toDTO: () => TemplateDTO;
