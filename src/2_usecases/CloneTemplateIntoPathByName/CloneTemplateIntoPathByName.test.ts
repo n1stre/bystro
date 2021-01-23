@@ -1,19 +1,20 @@
 import CloneTemplateToPath from "./index";
 import TemplatesRepoMock from "../../../__tests__/mocks/TemplatesRepository";
 
-const repo = new TemplatesRepoMock();
+const templatesRepository = new TemplatesRepoMock();
 const filesystem = {
   createFiles: jest.fn((p: string, f: []) => undefined),
 };
 
-describe("CloneTemplateToPath usecase", () => {
-  it("should create template files within the specified path", async () => {
+describe("CloneTemplateToPathByName usecase", () => {
+  it("should create template from the given name within the specified path", async () => {
     const dependencies = {
+      templatesRepository,
       filesystem,
     };
 
     CloneTemplateToPath.build(dependencies).exec({
-      template: repo.getTemplateByName("rc"),
+      name: "rc",
       path: "./some/fake/path",
       variables: { NAME: "MyComponent" },
     });

@@ -1,18 +1,24 @@
 import Template from "@entities/Template";
-import { TemplateDTO } from "@entities/Template/Template.interface";
 import {
   FilesystemAdapterInstance,
   TemplatesRepositoryInstance,
 } from "../interfaces";
 
-export default (deps: { filesystem: FilesystemAdapterInstance }) => {
+export default (deps: {
+  templatesRepository: TemplatesRepositoryInstance;
+  filesystem: FilesystemAdapterInstance;
+}) => {
   return Object.freeze({
     exec: (props: {
       path: string;
-      template: TemplateDTO;
+      name: string;
       variables: Record<string, string>;
     }) => {
-      const template = Template.make(props.template)
+      const dto = deps.templatesRepository.getTemplateByName(props.name);
+
+      if (!dto) return;
+
+      const template = Template.make(dto)
         .setPath(props.path)
         .setVariables(props.variables);
 
