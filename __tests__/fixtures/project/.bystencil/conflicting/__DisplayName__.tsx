@@ -1,0 +1,1 @@
+// project based conflicting template file
