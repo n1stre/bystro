@@ -1,24 +1,20 @@
 import path from "path";
 import TemplatesRepository from "./FsTemplatesRepository";
 
+const repoTemplatesPath = "../../../../__tests__/fixtures/templates";
+const projectTemplatesPath = "./.bystencil";
+const projectPath = path.resolve(
+  __dirname,
+  "../../../../__tests__/fixtures/project",
+);
+
+const templatesRepo = new TemplatesRepository(
+  repoTemplatesPath,
+  projectPath,
+  projectTemplatesPath,
+);
+
 describe.skip("FsTemplatesRepository", () => {
-  let templatesRepo: TemplatesRepository;
-
-  beforeAll(() => {
-    const repoTemplatesPath = "../../../../__tests__/fixtures/templates";
-    const projectTemplatesPath = "./.bystencil";
-    const projectPath = path.resolve(
-      __dirname,
-      "../../../../__tests__/fixtures/project",
-    );
-
-    templatesRepo = new TemplatesRepository(
-      repoTemplatesPath,
-      projectPath,
-      projectTemplatesPath,
-    );
-  });
-
   it("should find project based template by name", () => {
     const template = templatesRepo.getTemplateByName("project_based");
 
