@@ -1,7 +1,11 @@
 import Template from "./index";
 
 const basic = {
-  path: "../some/path",
+  config: {
+    variablePrefix: "__",
+    variableSuffix: "__",
+    variables: [{ name: "NAME" }, { name: "NESTED" }],
+  },
   files: [
     {
       path: "__NAME__.ts",
@@ -23,41 +27,27 @@ const basic = {
 };
 
 describe("Template entity", () => {
-  it("should set path", async () => {
-    const t = Template.make(basic);
-    expect(t.getPath()).toBe("../some/path");
-
-    const newPath = "../somenew/path";
-    t.setPath(newPath);
-
-    expect(t.getPath()).toBe(newPath);
-    expect(t.toDTO().path).toBe(newPath);
-  });
-
-  it("should be filled with variables", async () => {
+  it("should interpolate files paths and contents with variables", async () => {
     const v = { NAME: "MyEntity", NESTED: "MyNested" };
-    const t = Template.make(basic).setVariables(v);
+    const t = Template.make(basic);
 
-    expect(t.toDTO()).toEqual({
-      path: "../some/path",
-      files: [
-        {
-          path: `${v.NAME}.ts`,
-          contents: `const ${v.NAME} = "${v.NAME}"`,
-        },
-        {
-          path: `${v.NAME}.test.ts`,
-          contents: `describe("${v.NAME} entity", () => {})`,
-        },
-        {
-          path: `nested/${v.NESTED}.txt`,
-          contents: `some abstract ${v.NESTED} file`,
-        },
-        {
-          path: "nested/static.txt",
-          contents: "some static file",
-        },
-      ],
-    });
+    expect(t.getInterpolatedFiles(v)).toEqual([
+      {
+        path: `${v.NAME}.ts`,
+        contents: `const ${v.NAME} = "${v.NAME}"`,
+      },
+      {
+        path: `${v.NAME}.test.ts`,
+        contents: `describe("${v.NAME} entity", () => {})`,
+      },
+      {
+        path: `nested/${v.NESTED}.txt`,
+        contents: `some abstract ${v.NESTED} file`,
+      },
+      {
+        path: "nested/static.txt",
+        contents: "some static file",
+      },
+    ]);
   });
 });

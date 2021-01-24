@@ -1,22 +1,27 @@
-export interface TemplateBuildParams {
-  varPrefix: string;
-  varSuffix: string;
-}
-
-export interface FileDTO {
+export interface ITemplateFile {
   path: string;
   contents: string;
 }
 
-export interface TemplateDTO {
-  path?: string;
-  files: FileDTO[];
+export interface ITemplateVariable {
+  name: string;
+  description?: string;
 }
 
-export interface TemplateInstance {
-  getPath: () => string;
-  getFiles: () => FileDTO[];
-  setPath: (p: string) => TemplateInstance;
-  setVariables: (v: Record<string, string>) => TemplateInstance;
-  toDTO: () => TemplateDTO;
+export interface ITemplateConfig {
+  variablePrefix: string;
+  variableSuffix: string;
+  variables: ITemplateVariable[];
+}
+
+export interface ITemplate {
+  files: ITemplateFile[];
+  config: ITemplateConfig;
+}
+
+export interface ITemplateInstance {
+  getRequiredVariables: () => ITemplateVariable[];
+  getFiles: () => ITemplateFile[];
+  getInterpolatedFiles: (v: Record<string, string>) => ITemplateFile[];
+  toDTO: () => ITemplate;
 }

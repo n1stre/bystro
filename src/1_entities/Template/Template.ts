@@ -1,43 +1,38 @@
-import {
-  TemplateBuildParams,
-  TemplateDTO,
-  TemplateInstance,
-} from "./Template.interface";
+import { ITemplate, ITemplateInstance } from "./Template.interface";
 
-export default (params: TemplateBuildParams) => {
-  return function makeTemplate(props: TemplateDTO): TemplateInstance {
+export default () => {
+  return function makeTemplate(props: ITemplate): ITemplateInstance {
     const dto = { ...props };
 
     return Object.freeze({
-      getPath: () => {
-        return dto.path;
+      getRequiredVariables: () => {
+        return dto.config.variables;
       },
 
       getFiles: () => {
-        return dto.files
+        return dto.files;
       },
 
-      setPath(path) {
-        dto.path = path;
-        return this;
-      },
-
-      setVariables(vars) {
-        dto.files = dto.files.map(({ path, contents }) => {
-          Object.keys(vars).forEach((rawVariable) => {
-            const variable = params.varPrefix + rawVariable + params.varSuffix;
-            const value = vars[rawVariable];
-            path = path.replace(new RegExp(variable, "g"), value);
-            contents = contents.replace(new RegExp(variable, "g"), value);
+      getInterpolatedFiles(vars) {
+        return dto.files.map(({ path, contents }) => {
+          Object.keys(vars).forEach((variable) => {
+            path = interpolate(path, variable, vars[variable]);
+            contents = interpolate(contents, variable, vars[variable]);
           });
 
           return { path, contents };
         });
-
-        return this;
       },
 
       toDTO: () => dto,
     });
+
+    function interpolate(target: string, variable: string, value: string) {
+      return target.replace(new RegExp(formatVariable(variable), "g"), value);
+    }
+
+    function formatVariable(variable: string) {
+      return dto.config.variablePrefix + variable + dto.config.variableSuffix;
+    }
   };
 };
