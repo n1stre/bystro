@@ -5,7 +5,9 @@ const templates: Record<string, ITemplate> = {
     config: {
       variablePrefix: "__",
       variableSuffix: "__",
-      variables: [{ name: "__NAME__" }],
+      variables: [
+        { name: "NAME", description: "Name of your React component" },
+      ],
     },
     files: [
       {
