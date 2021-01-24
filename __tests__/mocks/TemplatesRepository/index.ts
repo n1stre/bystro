@@ -1,7 +1,12 @@
-import { TemplateDTO } from "../../../src/1_entities/Template/Template.interface";
+import { ITemplate } from "../../../src/1_entities/Template/Template.interface";
 
-const templates: Record<string, TemplateDTO> = {
+const templates: Record<string, ITemplate> = {
   rc: {
+    config: {
+      variablePrefix: "__",
+      variableSuffix: "__",
+      variables: [{ name: "__NAME__" }],
+    },
     files: [
       {
         path: "__NAME__/index.ts",
