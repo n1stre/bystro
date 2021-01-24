@@ -1,13 +1,7 @@
 import Template from "@entities/Template";
-import {
-  FilesystemAdapterInstance,
-  TemplatesRepositoryInstance,
-} from "../interfaces";
+import { TemplatesRepositoryInstance } from "../interfaces";
 
-export default (deps: {
-  templatesRepository: TemplatesRepositoryInstance;
-  filesystem: FilesystemAdapterInstance;
-}) => {
+export default (deps: { templatesRepository: TemplatesRepositoryInstance }) => {
   return Object.freeze({
     exec: (props: { name: string }) => {
       const dto = deps.templatesRepository.getTemplateByName(props.name);
