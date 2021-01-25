@@ -12,7 +12,8 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "lib",
+    "rootDir": "src",
     "typeRoots": ["./**/__types__", "./node_modules/@types"],
     "baseUrl": ".",
     "paths": {
@@ -26,5 +27,5 @@
     }
   },
   "include": ["src", "__types__/index.d.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
 }
