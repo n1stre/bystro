@@ -1,9 +1,6 @@
 import buildTemplate from "./Template";
 
-const makeTemplate = buildTemplate({
-  varPrefix: "__",
-  varSuffix: "__",
-});
+const makeTemplate = buildTemplate();
 
 const Template = Object.freeze({
   prebuild: buildTemplate,
