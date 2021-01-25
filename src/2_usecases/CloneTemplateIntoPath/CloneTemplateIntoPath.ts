@@ -9,7 +9,7 @@ export default (deps: {
   filesystem: FilesystemAdapterInstance;
 }) => {
   return Object.freeze({
-    exec: (props: {
+    exec: async (props: {
       path: string;
       name: string;
       variables: Record<string, string>;
@@ -20,7 +20,7 @@ export default (deps: {
 
       const template = Template.make(dto);
       const files = template.getInterpolatedFiles(props.variables);
-      deps.filesystem.createFiles(props.path, files);
+      return deps.filesystem.createFiles(props.path, files);
     },
   });
 };

@@ -3,7 +3,7 @@ import { TemplatesRepositoryInstance } from "../interfaces";
 
 export default (deps: { templatesRepository: TemplatesRepositoryInstance }) => {
   return Object.freeze({
-    exec: (props: { name: string }) => {
+    exec: async (props: { name: string }) => {
       const dto = deps.templatesRepository.getTemplateByName(props.name);
 
       if (!dto) return;
