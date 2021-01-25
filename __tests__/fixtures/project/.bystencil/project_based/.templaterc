@@ -1,0 +1,7 @@
+{
+  "variablePrefix": "__",
+  "variableSuffix": "__",
+  "variables": [
+    { "name": "DisplayName", "description": "React component name"}
+  ]
+}
