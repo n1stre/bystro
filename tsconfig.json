@@ -15,16 +15,8 @@
     "outDir": "lib",
     "rootDir": "src",
     "typeRoots": ["./**/__types__", "./node_modules/@types"],
-    "baseUrl": ".",
-    "paths": {
-      "@fixtures/*": ["__tests__/fixtures/*"],
-      "@mocks/*": ["__tests__/mocks/*"],
-      "@entities/*": ["src/1_entities/*"],
-      "@usecases/*": ["src/2_usecases/*"],
-      "@adapters/*": ["src/3_adapters/*"],
-      "@shared/*": ["src/shared/*"]
-    }
+    "baseUrl": "."
   },
-  "include": ["src", "__types__/index.d.ts"],
+  "include": ["src"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
 }

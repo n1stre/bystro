@@ -5,13 +5,6 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  moduleNameMapper: {
-    "^@mocks/(.*)$": "<rootDir>/__tests__/mocks/$1",
-    "^@fixtures/(.*)$": "<rootDir>/__tests__/fixtures/$1",
-    "^@entities/(.*)$": "<rootDir>/src/1_entities/$1",
-    "^@usecases/(.*)$": "<rootDir>/src/2_usecases/$1",
-    "^@shared/(.*)$": "<rootDir>/src/shared/$1",
-  },
 
   testEnvironment: "node",
   testMatch: ["**/*.(test|spec).(js|ts|tsx)"],
