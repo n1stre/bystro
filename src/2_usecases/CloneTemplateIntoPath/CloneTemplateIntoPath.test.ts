@@ -3,7 +3,7 @@ import TemplatesRepoMock from "../../../__tests__/mocks/TemplatesRepository";
 
 const templatesRepository = new TemplatesRepoMock();
 const filesystem = {
-  createFiles: jest.fn((f: any[]) => undefined),
+  createFiles: jest.fn((f: any[]) => Promise.resolve(undefined)),
 };
 
 describe("CloneTemplateToPathByName usecase", () => {
