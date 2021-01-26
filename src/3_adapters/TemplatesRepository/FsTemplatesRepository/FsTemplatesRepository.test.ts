@@ -1,20 +1,17 @@
 import path from "path";
 import TemplatesRepository from "./FsTemplatesRepository";
 
+const templateConfigFiles = [".templaterc"];
 const repoTemplatesPath = "../../../../__tests__/fixtures/templates";
-const projectTemplatesPath = "./.bystencil";
-const projectPath = path.resolve(
-  __dirname,
-  "../../../../__tests__/fixtures/project",
-);
+const projTemplatesPath = "../../../../__tests__/fixtures/project/.bystencil";
 
 const templatesRepo = new TemplatesRepository(
-  repoTemplatesPath,
-  projectPath,
-  projectTemplatesPath,
+  path.resolve(__dirname, repoTemplatesPath),
+  path.resolve(__dirname, projTemplatesPath),
+  templateConfigFiles,
 );
 
-describe.skip("FsTemplatesRepository", () => {
+describe("FsTemplatesRepository", () => {
   it("should find project based template by name", () => {
     const template = templatesRepo.getTemplateByName("project_based");
 
@@ -61,6 +58,20 @@ describe.skip("FsTemplatesRepository", () => {
           contents: "// project based conflicting template file",
         },
       ],
+    });
+  });
+
+  it("should include template config", () => {
+    const template = templatesRepo.getTemplateByName("project_based");
+
+    expect(template).toMatchObject({
+      config: {
+        variablePrefix: "__",
+        variableSuffix: "__",
+        variables: [
+          { name: "DisplayName", description: "React component name" },
+        ],
+      },
     });
   });
 });
