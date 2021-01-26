@@ -1,4 +1,4 @@
-import Template from "@entities/Template";
+import Template from "../../1_entities/Template";
 import {
   FilesystemAdapterInstance,
   TemplatesRepositoryInstance,
@@ -19,8 +19,11 @@ export default (deps: {
       if (!dto) return;
 
       const template = Template.make(dto);
-      const files = template.getInterpolatedFiles(props.variables);
-      return deps.filesystem.createFiles(props.path, files);
+      const files = template
+        .setPath(props.path)
+        .getInterpolatedFiles(props.variables);
+
+      return deps.filesystem.createFiles(files);
     },
   });
 };

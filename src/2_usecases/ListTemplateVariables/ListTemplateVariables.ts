@@ -1,12 +1,13 @@
-import Template from "@entities/Template";
+import Template from "../../1_entities/Template";
 import { TemplatesRepositoryInstance } from "../interfaces";
 
 export default (deps: { templatesRepository: TemplatesRepositoryInstance }) => {
   return Object.freeze({
     exec: async (props: { name: string }) => {
-      const dto = deps.templatesRepository.getTemplateByName(props.name);
+      if (!props.name) throw new Error("Template name is required");
 
-      if (!dto) return;
+      const dto = deps.templatesRepository.getTemplateByName(props.name);
+      if (!dto) throw new Error(`Template "${props.name}" was not found`);
 
       const template = Template.make(dto);
       const variables = template.getRequiredVariables();

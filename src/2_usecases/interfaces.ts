@@ -4,7 +4,7 @@ import {
 } from "../1_entities/Template/Template.interface";
 
 export interface FilesystemAdapterInstance {
-  createFiles: (path: string, files: ITemplateFile[]) => void;
+  createFiles: (files: ITemplateFile[]) => Promise<any>;
 }
 
 export interface TemplatesRepositoryInstance {

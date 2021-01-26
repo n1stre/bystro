@@ -3,7 +3,7 @@ import TemplatesRepoMock from "../../../__tests__/mocks/TemplatesRepository";
 
 const templatesRepository = new TemplatesRepoMock();
 const filesystem = {
-  createFiles: jest.fn((p: string, f: []) => undefined),
+  createFiles: jest.fn((f: any[]) => undefined),
 };
 
 describe("CloneTemplateToPathByName usecase", () => {
@@ -15,22 +15,22 @@ describe("CloneTemplateToPathByName usecase", () => {
 
     CloneTemplateToPath.build(dependencies).exec({
       name: "rc",
-      path: "./some/fake/path",
+      path: "some/fake/path",
       variables: { NAME: "MyComponent" },
     });
 
-    expect(filesystem.createFiles).toBeCalledWith("./some/fake/path", [
+    expect(filesystem.createFiles).toBeCalledWith([
       {
-        path: "MyComponent/index.ts",
+        path: "some/fake/path/MyComponent/index.ts",
         contents: "console.log('hello')",
       },
       {
-        path: "MyComponent/MyComponent.ts",
+        path: "some/fake/path/MyComponent/MyComponent.ts",
         contents:
           "export default function MyComponent() { console.log('Hello from MyComponent'); }",
       },
       {
-        path: "MyComponent/data/some.txt",
+        path: "some/fake/path/MyComponent/data/some.txt",
         contents: "some static data",
       },
     ]);
