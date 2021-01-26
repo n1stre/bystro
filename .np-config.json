@@ -1,6 +1,5 @@
 {
   "branch": "main",
   "contents": "lib",
-  "preview": true,
-  "publish": true
+  "preview": false
 }
