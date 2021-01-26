@@ -29,6 +29,7 @@ src/
 
 # Misc
 .github/
+dist/
 docs/
 .vscode/
 .idea/
