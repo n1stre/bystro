@@ -2,8 +2,8 @@ import path from "path";
 import TemplatesRepository from "./FsTemplatesRepository";
 
 const templateConfigFiles = [".templaterc"];
-const repoTemplatesPath = "../../../../__tests__/fixtures/templates";
-const projTemplatesPath = "../../../../__tests__/fixtures/project/.bystencil";
+const repoTemplatesPath = "../../../../test/fixtures/templates";
+const projTemplatesPath = "../../../../test/fixtures/project/.bystencil";
 
 const templatesRepo = new TemplatesRepository(
   path.resolve(__dirname, repoTemplatesPath),

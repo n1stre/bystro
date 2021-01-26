@@ -12,7 +12,7 @@ module.exports = {
 
   collectCoverage: false,
   collectCoverageFrom: ["src/**/*.ts*"],
-  coverageDirectory: "__tests__/coverage",
+  coverageDirectory: "test/coverage",
   coveragePathIgnorePatterns: ["/node_modules/"],
   coverageReporters: ["json", "lcov", "text", "text-summary"],
   coverageThreshold: {

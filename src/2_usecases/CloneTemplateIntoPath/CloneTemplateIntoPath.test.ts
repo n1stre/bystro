@@ -1,5 +1,5 @@
 import CloneTemplateToPath from "./index";
-import TemplatesRepoMock from "../../../__tests__/mocks/TemplatesRepository";
+import TemplatesRepoMock from "../../../test/mocks/TemplatesRepository";
 
 const templatesRepository = new TemplatesRepoMock();
 const filesystem = {
