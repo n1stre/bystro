@@ -1,5 +1,5 @@
 {
-  "name": "bystencil",
+  "name": "bystro",
   "version": "1.0.0",
   "description": "file&amp;folder template snippets tool",
   "main": "./lib/index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/streletss/bystencil.git"
+    "url": "git+https://github.com/streletss/bystro.git"
   },
   "keywords": [],
   "author": "Nikita Streletss",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/streletss/bystencil/issues"
+    "url": "https://github.com/streletss/bystro/issues"
   },
-  "homepage": "https://github.com/streletss/bystencil#readme",
+  "homepage": "https://github.com/streletss/bystro#readme",
   "dependencies": {
     "chalk": "^4.1.0",
     "glob": "^7.1.6",
