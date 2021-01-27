@@ -4,9 +4,10 @@
 
 Sometimes, you can find yourself copypasting a whole folder of files which represents some component (f.e. React component) and then renaming filenames, variables, etc. to satisfy your needs. Bystro helps you to automate this process.
 
+![License](https://img.shields.io/npm/l/bystro)
 ![NPM Version](https://img.shields.io/npm/v/bystro)
 ![TravisCI Build](https://badgen.net/travis/streletss/bystro?label=build)
-![Code Coverage](https://img.shields.io/coveralls/github/streletss/bystro)
+![Code Coverage](https://codecov.io/gh/streletss/bystro/branch/main/graph/badge.svg)
 
 ## Install
 
@@ -24,7 +25,7 @@ $ bystro <template_name> <path>
 
 ##### Arguments
 
-`<template_name>` - Name of the template you want to scaffold.
+`<template_name>` - Name of the template you want to scaffold.<br />
 `<path>`- Path to scaffold template in.
 
 List of available templates can be found [here](https://github.com/streletss/bystro/tree/main/templates)
@@ -68,18 +69,18 @@ $ touch .bystro/my_template/.templaterc
 
 To scaffold the above template run `npx bystro my_template <path>` and you'll be prompted to fill the variable values:
 
-```console
+```
 ? Enter Name (Component name): MyComponent
 ```
 
 And that's it. Goto `<path>` to view the scaffolded template tree:
 
-```console
+```
 |____MyComponent
 | |____MyComponent.js
 | |      import "./MyComponent.css";
 | |____MyComponent.css
-|        // hello from __Name__
+|        // hello from MyComponent
 ```
 
 ##### Publish
