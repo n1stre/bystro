@@ -4,6 +4,6 @@ node_js:
 install:
   - npm install
 script:
-  - npm run test
-# after_sucess:
-#   - npm run coverage
+  - npm run test:coverage
+after_sucess:
+  - bash <(curl -s https://codecov.io/bash)
