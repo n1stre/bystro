@@ -25,6 +25,7 @@ $ bystro <template_name> <path>
 ##### Arguments
 
 `<template_name>` - Name of the template you want to scaffold.
+
 `<path>`- Path to scaffold template in.
 
 List of available templates can be found [here](https://github.com/streletss/bystro/tree/main/templates)
@@ -68,13 +69,13 @@ $ touch .bystro/my_template/.templaterc
 
 To scaffold the above template run `npx bystro my_template <path>` and you'll be prompted to fill the variable values:
 
-```console
+```shell
 ? Enter Name (Component name): MyComponent
 ```
 
 And that's it. Goto `<path>` to view the scaffolded template tree:
 
-```console
+```shell
 |____MyComponent
 | |____MyComponent.js
 | |      import "./MyComponent.css";
