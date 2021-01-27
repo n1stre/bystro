@@ -1,6 +1,6 @@
 {
   "name": "bystro",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "file&amp;folder template snippets tool",
   "main": "./lib/index.js",
   "bin": "./lib/index.js",
