@@ -25,7 +25,7 @@ $ bystro <template_name> <path>
 
 ##### Arguments
 
-`<template_name>` - Name of the template you want to scaffold.<br />
+`<template_name>` - Name of the template you want to scaffold. <br />
 `<path>`- Path to scaffold template in.
 
 List of available templates can be found [here](https://github.com/streletss/bystro/tree/main/templates)
