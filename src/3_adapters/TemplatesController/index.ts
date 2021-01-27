@@ -7,7 +7,7 @@ import FileSystemAdapter from "../FileSystemAdapter";
 const filesystem = FileSystemAdapter.make();
 const templatesRepository = TemplatesRepository.make(
   path.resolve(__dirname, "../../../templates"),
-  path.resolve(process.cwd(), ".bystencil"),
+  path.resolve(process.cwd(), ".bystro"),
   [".templaterc"],
 );
 
