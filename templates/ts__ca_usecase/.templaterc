@@ -1,0 +1,7 @@
+{
+  "variablePrefix": "__",
+  "variableSuffix": "__",
+  "variables": [
+    { "name": "Name", "description": "CA usecase name"}
+  ]
+}
