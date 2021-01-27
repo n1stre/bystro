@@ -16,10 +16,11 @@
   },
   "homepage": "https://github.com/streletss/bystro#readme",
   "scripts": {
-    "start": "ts-node ./src/index.js",
+    "start": "ts-node ./src/index.ts",
     "build": "tsc -p .",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "release": "yarn build && np"
   },
   "dependencies": {
