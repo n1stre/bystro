@@ -1,14 +1,24 @@
 {
   "name": "bystro",
   "version": "0.2.0",
-  "description": "file&amp;folder template snippets tool",
+  "description": "CLI utility for scaffolding code templates and boilerplates",
   "main": "./lib/index.js",
   "bin": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/streletss/bystro.git"
   },
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "templates",
+    "scaffold",
+    "scaffold utility",
+    "scaffold tool",
+    "scaffolder",
+    "scaffold templates",
+    "scaffold files",
+    "cli scaffolding"
+  ],
   "author": "Nikita Streletss",
   "license": "MIT",
   "bugs": {
