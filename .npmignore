@@ -11,7 +11,7 @@ coverage
 jest.config.js
 
 # Build Configs
-# tsconfig.json
+tsconfig.json
 rollup.config.js
 rollup-dev.config.js
 .gitignore
@@ -20,7 +20,7 @@ rollup-dev.config.js
 .np-config.json
 
 # Raw source
-# src/
+src/
 
 # Linting
 .prettierrc
@@ -29,10 +29,9 @@ rollup-dev.config.js
 
 # Misc
 .github/
-dist/
-docs/
 .vscode/
 .idea/
+docs/
 benchmarks/
 settings.json
 CNAME

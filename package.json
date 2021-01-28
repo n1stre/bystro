@@ -2,8 +2,8 @@
   "name": "bystro",
   "version": "0.3.2",
   "description": "CLI utility for scaffolding code templates and boilerplates",
-  "main": "./bin/index.js",
-  "bin": "./bin/index.js",
+  "main": "./src/index.ts",
+  "bin": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/streletss/bystro.git"
@@ -26,18 +26,18 @@
   },
   "homepage": "https://github.com/streletss/bystro#readme",
   "scripts": {
-    "start": "node ./lib/index.js",
+    "start": "ts-node ./src/index.ts",
+    "build": "tsc -p .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "release": "np"
+    "release": "yarn build && np"
   },
   "dependencies": {
     "chalk": "^4.1.0",
     "glob": "^7.1.6",
     "inquirer": "^7.3.3",
-    "minimist": "^1.2.5",
-    "ts-node": "^9.1.1"
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
@@ -54,6 +54,7 @@
     "np": "^7.2.0",
     "prettier": "^2.2.1",
     "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.2"
   },
   "publishConfig": {
