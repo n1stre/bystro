@@ -1,6 +1,6 @@
 {
   "name": "bystro",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "CLI utility for scaffolding code templates and boilerplates",
   "main": "./bin/index.js",
   "bin": "./bin/index.js",
