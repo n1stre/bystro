@@ -6,7 +6,7 @@ Sometimes, you can find yourself copypasting a whole folder of files which repre
 
 ![License](https://img.shields.io/npm/l/bystro)
 ![NPM Version](https://img.shields.io/npm/v/bystro)
-![TravisCI Build](https://badgen.net/travis/streletss/bystro?label=build)
+![TravisCI Build](https://badgen.net/travis/streletss/bystro)
 ![Code Coverage](https://codecov.io/gh/streletss/bystro/branch/main/graph/badge.svg)
 
 ## Install
