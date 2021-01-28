@@ -1,7 +1,7 @@
-import FSAdapter from "./FilesystemAdapter";
+import FSAdapter from "./FileSystemAdapter";
 
-const FilesystemAdapter = Object.freeze({
+const FileSystemAdapter = Object.freeze({
   make: () => new FSAdapter(),
 });
 
-export default FilesystemAdapter;
+export default FileSystemAdapter;
