@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import parseArgs from "minimist";
 import inquirer from "inquirer";
 import chalk from "chalk";

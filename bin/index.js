@@ -1,4 +1,3 @@
-#! /usr/bin/env node
+#!/usr/bin/env ts-node-script
 
-require('ts-node').register();
 require('../src/index.ts');
