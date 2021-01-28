@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
-    "outDir": "lib",
+    "outDir": "dist",
     "rootDir": "src",
     "typeRoots": ["./**/__types__", "./node_modules/@types"],
     "baseUrl": "."
