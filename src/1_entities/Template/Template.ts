@@ -5,56 +5,61 @@ import {
 } from "./Template.interface";
 
 export default (deps: { joinPaths: (p1: string, p2: string) => string }) => {
-  return function makeTemplate(props: ITemplate): ITemplateInstance {
-    const dto = { ...props };
+  return class Template implements ITemplateInstance {
+    constructor(private dto: ITemplate) {
+      this.dto = { ...dto };
+    }
 
-    return Object.freeze({
-      getPath: () => {
-        return dto.path;
-      },
+    public getPath = () => {
+      return this.dto.path;
+    };
 
-      getRequiredVariables: () => {
-        return dto.config.variables;
-      },
+    public getRequiredVariables = () => {
+      return this.dto.config.variables;
+    };
 
-      getFiles: () => {
-        return dto.files;
-      },
+    public getFiles = () => {
+      return this.dto.files;
+    };
 
-      getInterpolatedFiles(vars) {
-        return dto.files.map((file) => {
-          file = interpolateFile(file, vars);
-          file.path = formatPath(file.path);
-          return file;
-        });
-      },
+    public interpolateFiles = (variables: Record<string, string>) => {
+      return this.dto.files.map((file) => {
+        file = this.interpolateFile(file, variables);
+        file.path = this.toFullPath(file.path);
+        return file;
+      });
+    };
 
-      setPath(newPath: string) {
-        dto.path = newPath;
-        return this;
-      },
+    public setPath = (newPath: string) => {
+      this.dto.path = newPath;
+      return this;
+    };
 
-      toDTO: () => dto,
-    });
+    public toDTO = () => {
+      return this.dto;
+    };
 
-    function interpolateFile(f: ITemplateFile, v: Record<string, string>) {
+    private interpolateFile(f: ITemplateFile, v: Record<string, string>) {
       return Object.keys(v).reduce((file, variable) => {
-        const path = interpolate(file.path, variable, v[variable]);
-        const contents = interpolate(file.contents, variable, v[variable]);
+        const path = this.interpolate(file.path, variable, v[variable]);
+        const contents = this.interpolate(file.contents, variable, v[variable]);
         return { path, contents };
       }, f);
     }
 
-    function interpolate(target: string, variable: string, value: string) {
-      return target.replace(new RegExp(formatVariable(variable), "g"), value);
+    private interpolate(target: string, variable: string, value: string) {
+      const variableString = new RegExp(this.formatVariable(variable), "g");
+      return target.replace(variableString, value);
     }
 
-    function formatPath(path: string) {
-      return dto.path ? deps.joinPaths(dto.path, path) : path;
+    private toFullPath(path: string) {
+      const base = this.getPath();
+      return base ? deps.joinPaths(base, path) : path;
     }
 
-    function formatVariable(variable: string) {
-      return dto.config.variablePrefix + variable + dto.config.variableSuffix;
+    private formatVariable(variable: string) {
+      const { variablePrefix, variableSuffix } = this.dto.config;
+      return variablePrefix + variable + variableSuffix;
     }
   };
 };

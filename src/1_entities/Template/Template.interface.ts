@@ -24,7 +24,7 @@ export interface ITemplateInstance {
   getPath: () => string | undefined;
   getRequiredVariables: () => ITemplateVariable[];
   getFiles: () => ITemplateFile[];
-  getInterpolatedFiles: (v: Record<string, string>) => ITemplateFile[];
+  interpolateFiles: (v: Record<string, string>) => ITemplateFile[];
   setPath: (p: string) => ITemplateInstance;
   toDTO: () => ITemplate;
 }

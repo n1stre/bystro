@@ -1,13 +1,11 @@
 import path from "path";
 import buildTemplate from "./Template";
+import { ITemplate } from "./Template.interface";
 
-const makeTemplate = buildTemplate({
+const Template = buildTemplate({
   joinPaths: path.join,
 });
 
-const Template = Object.freeze({
-  prebuild: buildTemplate,
-  make: makeTemplate,
+export default Object.freeze({
+  make: (dto: ITemplate) => new Template(dto),
 });
-
-export default Template;
