@@ -2,11 +2,11 @@
 
 ### A CLI utility library for scaffolding code templates and boilerplates.
 
-Sometimes, you can find yourself copypasting a whole folder of files which represents some component (f.e. React component) and then renaming filenames, variables, etc. to satisfy your needs. Bystro helps you to automate this process.
+Sometimes you can find yourself copypasting a whole folder of files which represents some component (f.e. React component) and then renaming filenames, variables, etc. to satisfy your needs. Bystro helps you to automate this process.
 
 ![License](https://img.shields.io/npm/l/bystro)
 ![NPM Version](https://img.shields.io/npm/v/bystro)
-![TravisCI Build](https://badgen.net/travis/streletss/bystro)
+![TravisCI Build](https://img.shields.io/travis/streletss/bystro)
 ![Code Coverage](https://codecov.io/gh/streletss/bystro/branch/main/graph/badge.svg)
 
 ## Install
@@ -48,7 +48,7 @@ $ echo '// hello from __Name__' > .bystro/my_template/__Name__.css
 $ touch .bystro/my_template/.templaterc
 ```
 
-##### Configuration
+#### Configuration
 
 `.templaterc` is required to tell `bystro` how to process it. To make the above template to work add the following to its `.templaterc`:
 
@@ -65,7 +65,7 @@ $ touch .bystro/my_template/.templaterc
 }
 ```
 
-##### Scaffolding
+#### Scaffolding
 
 To scaffold the above template run `npx bystro my_template <path>` and you'll be prompted to fill the variable values:
 
@@ -83,7 +83,7 @@ And that's it. Goto `<path>` to view the scaffolded template tree:
 |        // hello from MyComponent
 ```
 
-##### Publish
+#### Publish
 
 To make your template globally available just create a PR including your template in the [`templates` folder](https://github.com/streletss/bystro/tree/main/templates).
 
