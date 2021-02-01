@@ -31,7 +31,7 @@ describe("Template entity", () => {
     const v = { NAME: "MyEntity", NESTED: "MyNested" };
     const t = Template.make(basic);
 
-    expect(t.getInterpolatedFiles(v)).toEqual([
+    expect(t.interpolateFiles(v)).toEqual([
       {
         path: `${v.NAME}.ts`,
         contents: `const ${v.NAME} = "${v.NAME}"`,
