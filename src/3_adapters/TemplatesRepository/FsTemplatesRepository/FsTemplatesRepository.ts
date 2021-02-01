@@ -1,38 +1,25 @@
 import fs from "fs";
 import path from "path";
 import glob from "glob";
-import { TemplatesRepositoryInstance } from "../../../2_usecases/interfaces";
+import { ITemplatesRepository } from "../../../2_usecases/interfaces";
 
-class FsTemplatesRepository implements TemplatesRepositoryInstance {
+class FsTemplatesRepository implements ITemplatesRepository {
   constructor(
-    private repoTemplatesPath: string,
-    private projectTemplatesPath: string,
+    private templatesPaths: string[],
     private templateConfigFiles: string[],
   ) {}
 
   public getTemplateByName = (name: string) => {
-    const templatePath = this.getTemplatePath(name);
+    const templatePath = this.templatesPaths
+      .map((templatePath) => path.join(templatePath, name))
+      .find(fs.existsSync);
+
     if (!templatePath) return null;
 
     return {
       config: this.getTemplateConfig(templatePath),
       files: this.getTemplateFiles(templatePath),
     };
-  };
-
-  private getTemplatePath = (templateName: string) => {
-    return [
-      this.getProjectBasedTemplatePath(templateName),
-      this.getRepoBasedTemplatePath(templateName),
-    ].find(fs.existsSync);
-  };
-
-  private getRepoBasedTemplatePath = (templateName: string) => {
-    return path.join(this.repoTemplatesPath, templateName);
-  };
-
-  private getProjectBasedTemplatePath = (templateName: string) => {
-    return path.join(this.projectTemplatesPath, templateName);
   };
 
   private getTemplateFiles = (templatePath: string) => {

@@ -1,14 +1,12 @@
 import path from "path";
 import TemplatesRepository from "./FsTemplatesRepository";
 
-const templateConfigFiles = [".templaterc"];
-const repoTemplatesPath = "../../../../test/fixtures/templates";
-const projTemplatesPath = "../../../../test/fixtures/project/.bystencil";
+const repoTemplatesPath = path.resolve(__dirname, "../../../../test/fixtures/templates" ); // prettier-ignore
+const projTemplatesPath = path.resolve(__dirname, "../../../../test/fixtures/project/.bystencil"); // prettier-ignore
 
 const templatesRepo = new TemplatesRepository(
-  path.resolve(__dirname, repoTemplatesPath),
-  path.resolve(__dirname, projTemplatesPath),
-  templateConfigFiles,
+  [projTemplatesPath, repoTemplatesPath],
+  [".templaterc"],
 );
 
 describe("FsTemplatesRepository", () => {

@@ -1,37 +1,21 @@
 #!/usr/bin/env node
 
-import parseArgs from "minimist";
-import inquirer from "inquirer";
 import chalk from "chalk";
-import TemplatesController from "./3_adapters/TemplatesController";
+import buildTemplatesController from "./3_adapters/TemplatesController";
+import FSDriver from "./4_infra/FSDriver";
+import IODriver from "./4_infra/IODriver";
+
+const fs = FSDriver.make();
+const io = IODriver.make();
+const TemplatesController = buildTemplatesController({ fs, io });
+
+async function run() {
+  const [name, path] = await io.getArgs(0, 1);
+  await TemplatesController.scaffold(path, name);
+  console.log(chalk.green(`Successfully cloned "${name}" into ${path}`));
+}
 
 run().catch((err) => {
   console.log(chalk.red(err.message));
   process.exit(err);
 });
-
-async function run() {
-  const args = parseArgs(process.argv.slice(2));
-  const templateName = args._[0];
-  const templatePath = args._[1];
-
-  const vars = await TemplatesController.listVariables({ name: templateName });
-
-  const answers = await inquirer.prompt(
-    vars.map((v) => ({
-      name: v.name,
-      message: `Enter ${v.name} (${v.description}):`,
-      type: "input",
-    })),
-  );
-
-  await TemplatesController.cloneIntoPath({
-    path: templatePath,
-    name: templateName,
-    variables: answers,
-  });
-
-  console.log(
-    chalk.green(`Successfully cloned "${templateName}" into ${templatePath}`),
-  );
-}

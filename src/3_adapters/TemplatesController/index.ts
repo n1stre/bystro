@@ -1,25 +1,30 @@
 import path from "path";
-import CloneTemplateIntoPath from "../../2_usecases/CloneTemplateIntoPath";
+import ScaffoldTemplateIntoPath from "../../2_usecases/ScaffoldTemplateIntoPath";
 import ListTemplateVariables from "../../2_usecases/ListTemplateVariables";
 import TemplatesRepository from "../TemplatesRepository";
-import FileSystemAdapter from "../FileSystemAdapter";
+import { IFileSystemDriver, IInputOutputDriver } from "../interfaces";
 
-const filesystem = FileSystemAdapter.make();
 const templatesRepository = TemplatesRepository.make(
-  path.resolve(__dirname, "../../../templates"),
-  path.resolve(process.cwd(), ".bystro"),
+  [
+    path.resolve(process.cwd(), ".bystro"),
+    path.resolve(__dirname, "../../../templates"),
+  ],
   [".templaterc"],
 );
 
-const TemplatesController = Object.freeze({
-  cloneIntoPath: CloneTemplateIntoPath.build({
-    templatesRepository,
-    filesystem,
-  }).exec,
+export default (dependencies: {
+  io: IInputOutputDriver;
+  fs: IFileSystemDriver;
+}) => {
+  return Object.freeze({
+    scaffold: ScaffoldTemplateIntoPath.build(
+      templatesRepository,
+      dependencies.fs,
+      dependencies.io,
+    ).exec,
 
-  listVariables: ListTemplateVariables.build({
-    templatesRepository,
-  }).exec,
-});
-
-export default TemplatesController;
+    listVariables: ListTemplateVariables.build({
+      templatesRepository,
+    }).exec,
+  });
+};
