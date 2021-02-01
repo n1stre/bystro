@@ -1,25 +1,16 @@
-import CloneTemplateToPath from "./index";
+import ScaffoldTemplateIntoPath from "./index";
 import TemplatesRepoMock from "../../../test/mocks/TemplatesRepository";
 
-const templatesRepository = new TemplatesRepoMock();
-const filesystem = {
-  createFiles: jest.fn((f: any[]) => Promise.resolve(undefined)),
-};
+const fs = { writeFiles: jest.fn((f: any[]) => Promise.resolve(undefined)) };
+const io = { promptInput: () => Promise.resolve({ NAME: "MyComponent" }) };
 
-describe("CloneTemplateToPathByName usecase", () => {
+const usecase = ScaffoldTemplateIntoPath.build(new TemplatesRepoMock(), fs, io);
+
+describe("ScaffoldTemplateIntoPath usecase", () => {
   it("should create template from the given name within the specified path", async () => {
-    const dependencies = {
-      templatesRepository,
-      filesystem,
-    };
+    await usecase.exec("some/fake/path", "rc");
 
-    CloneTemplateToPath.build(dependencies).exec({
-      name: "rc",
-      path: "some/fake/path",
-      variables: { NAME: "MyComponent" },
-    });
-
-    expect(filesystem.createFiles).toBeCalledWith([
+    expect(fs.writeFiles).toBeCalledWith([
       {
         path: "some/fake/path/MyComponent/index.ts",
         contents: "console.log('hello')",

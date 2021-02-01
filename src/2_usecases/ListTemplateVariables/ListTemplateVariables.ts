@@ -1,7 +1,7 @@
 import Template from "../../1_entities/Template";
-import { TemplatesRepositoryInstance } from "../interfaces";
+import { ITemplatesRepository } from "../interfaces";
 
-export default (deps: { templatesRepository: TemplatesRepositoryInstance }) => {
+export default (deps: { templatesRepository: ITemplatesRepository }) => {
   return Object.freeze({
     exec: async (props: { name: string }) => {
       if (!props.name) throw new Error("Template name is required");
