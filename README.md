@@ -1,6 +1,6 @@
 # bystro
 
-### A CLI utility library for scaffolding code templates and boilerplates.
+**A CLI utility library for scaffolding code templates and boilerplates**
 
 Sometimes you can find yourself copypasting a whole folder of files which represents some component (f.e. React component) and then renaming filenames, variables, etc. to satisfy your needs. Bystro helps you to automate this process.
 
