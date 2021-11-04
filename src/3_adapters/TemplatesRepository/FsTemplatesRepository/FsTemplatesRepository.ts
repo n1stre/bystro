@@ -23,11 +23,15 @@ class FsTemplatesRepository implements ITemplatesRepository {
   };
 
   private getTemplateFiles = (templatePath: string) => {
-    return glob.sync(`${templatePath}/**/*`, { nodir: true }).map((file) => {
-      const contents = fs.readFileSync(file).toString();
-      const filepath = path.relative(templatePath, file);
-      return { path: filepath, contents };
-    });
+    return glob
+      .sync(`${templatePath}/**/*`, { nodir: true, dot: true })
+      .filter(this.ignoreConfigFile)
+      .map((file) => {
+        const contents = fs.readFileSync(file).toString();
+        const filepath = path.relative(templatePath, file);
+
+        return { path: filepath, contents };
+      });
   };
 
   private getTemplateConfig = (templatePath: string) => {
@@ -47,6 +51,10 @@ class FsTemplatesRepository implements ITemplatesRepository {
       throw new Error(`${configFile} has invalid format`);
     }
   };
+
+  private ignoreConfigFile(file: string): boolean {
+    return !file.includes(".templaterc");
+  }
 }
 
 export default FsTemplatesRepository;

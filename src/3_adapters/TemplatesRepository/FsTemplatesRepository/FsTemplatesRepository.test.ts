@@ -39,6 +39,10 @@ describe("FsTemplatesRepository", () => {
             'import React from "react";\nimport styles from "./__DisplayName__.module.scss";\n',
         },
         {
+          path: ".gitkeep",
+          contents: "placeholder",
+        },
+        {
           path: "styles/__DisplayName__.module.scss",
           contents: ".__DisplayName__ {\n  display: none;\n}\n",
         },
@@ -71,5 +75,13 @@ describe("FsTemplatesRepository", () => {
         ],
       },
     });
+  });
+
+  it("should include files starting with a dot(.)", () => {
+    const template = templatesRepo.getTemplateByName("repo_based")!;
+
+    const gitkeepFile = template.files.find((f) => f.path.includes(".gitkeep"));
+
+    expect(gitkeepFile).toBeDefined();
   });
 });
